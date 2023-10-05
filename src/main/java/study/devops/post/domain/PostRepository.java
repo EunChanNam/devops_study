@@ -4,7 +4,7 @@ import java.util.Optional;
 
 public interface PostRepository {
 
-	void save(final Post book);
+	Post save(final Post post);
 
 	Optional<Post> findById(final Long id);
 }
