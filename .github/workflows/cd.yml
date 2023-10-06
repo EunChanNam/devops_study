@@ -32,6 +32,20 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+      - name: 환경변수 파일 생성
+        run: echo "${{ secrets.APPLICATION_ENV }}" > ./.env
+
+      - name: 환경변수 파일을 서버로 전송한다
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          source: "./.env"
+          target: "./home/ubuntu"
+
+
       - name: Docker image build
         run: docker build -t ${{ secrets.DOCKER_NAME }}/devops_study:latest .
 
@@ -48,7 +62,7 @@ jobs:
           # 이미 멈춰있어서 발생하는 예외를 방지하기 위해 || true 설정
           script: |
             sudo docker stop devops_study || true 
-            sudo docker pull eunchannam/devops_study:latest
+            sudo docker pull ${{ secrets.DOCKER_NAME }}/devops_study:latest
             sudo docker container prune -f 
             sudo docker run -d --log-driver=syslog --env-file .env \
             -p 8080:8080 --name devops_study \
