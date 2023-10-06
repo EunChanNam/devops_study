@@ -33,10 +33,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Docker image build
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/devops_study:latest .
+        run: docker build -t ${{ secrets.DOCKER_NAME }}/devops_study:latest .
 
       - name: docker Hub 푸쉬
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/devops_study:latest
+        run: docker push ${{ secrets.DOCKER_NAME }}/devops_study:latest
 
       - name: Deploy with push
         uses: appleboy/ssh-action@v1.0.0
@@ -52,5 +52,5 @@ jobs:
             sudo docker container prune -f 
             sudo docker run -d --log-driver=syslog --env-file .env \
             -p 8080:8080 --name devops_study \
-            ${{ secrets.DOCKERHUB_USERNAME }}/devops_study:latest
+            ${{ secrets.DOCKER_NAME }}/devops_study:latest
             
