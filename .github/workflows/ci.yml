@@ -42,6 +42,6 @@ jobs:
         if: always()
         uses: madrapps/jacoco-report@v1.6.1
         with:
-          paths: ${{ github.workspace }}/build/jacoco/index.html
+          paths: ${{ github.workspace }}/build/jacoco/jacocoTestReports.xml
           token: ${{ secrets.GIT_TOKEN }}
           title: Code Coverage

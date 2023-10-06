@@ -42,10 +42,11 @@ tasks.named('test') {
 
 jacocoTestReport {
 	reports {
-		xml.required = false
+		xml.required = true
 		csv.required = false
 		html.required = true
-		html.destination file("${buildDir}/jacoco")
+		xml.destination file("${buildDir}/jacoco/jacocoTestReports.xml")
+		html.destination file("${buildDir}/jacoco/")
 	}
 
 	afterEvaluate {
