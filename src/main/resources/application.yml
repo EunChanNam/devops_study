@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: org.h2.Driver
     url: ${DB_URL}
-    username: ${DB_USERNAME} sa
+    username: ${DB_USERNAME}
     password:
   h2:
     console:
