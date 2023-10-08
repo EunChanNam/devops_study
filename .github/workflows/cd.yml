@@ -65,6 +65,6 @@ jobs:
             sudo docker container prune -f 
             sudo docker pull ${{ secrets.DOCKER_NAME }}/devops_study:latest
             sudo docker run -d --log-driver=syslog --env-file .env \
-            -p 8080:8080 --name devops_study \
+            -p 8080:9000 --name devops_study \
             ${{ secrets.DOCKER_NAME }}/devops_study:latest
             
