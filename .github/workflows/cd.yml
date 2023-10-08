@@ -62,8 +62,8 @@ jobs:
           # 이미 멈춰있어서 발생하는 예외를 방지하기 위해 || true 설정
           script: |
             sudo docker stop devops_study || true 
-            sudo docker pull ${{ secrets.DOCKER_NAME }}/devops_study:latest
             sudo docker container prune -f 
+            sudo docker pull ${{ secrets.DOCKER_NAME }}/devops_study:latest
             sudo docker run -d --log-driver=syslog --env-file .env \
             -p 8080:8080 --name devops_study \
             ${{ secrets.DOCKER_NAME }}/devops_study:latest
