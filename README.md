@@ -6,4 +6,4 @@ CI-CD, AWS, Docker 연습장
 2. commit 2
 3. commit 3
 4. 1 2 3
-5. 1
+5. 1 2
